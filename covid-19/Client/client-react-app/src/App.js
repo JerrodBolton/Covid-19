@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Image from "./components/Img";
-import Weather from "./components/Weather";
+// import Weather from "./components/Weather";
+import Covid from "./components/Covid";
 
 export default class App extends Component {
   constructor(props) {
@@ -79,14 +80,14 @@ export default class App extends Component {
         <button style={{ color: "blue" }} onClick={this.handleClick}>
           Explore!
         </button>
-        <h2
+        {/* <h2
           style={{
             padding: "10px 20px",
             textAlign: "left",
             color: "blue",
             fontSize: "12.6666px",
           }}
-        >{`The city name is ${this.state.name}, with a latitude of ${this.state.locationLat} and longitude of ${this.state.locationLon}. `}</h2>
+        >{`The city name is ${this.state.name}, with a latitude of ${this.state.locationLat} and longitude of ${this.state.locationLon}. `}</h2> */}
 
         <Image
           // I need to pass the over some parameters for image and name
@@ -100,7 +101,11 @@ export default class App extends Component {
           locationLat={this.state.locationLat}
           locationLon={this.state.locationLon}
         /> */}
-
+         <Covid
+         name={this.state.name}
+         locationLat={this.state.locationLat}
+          locationLon={this.state.locationLon}
+         />
         {/* I need to make a components to make my image */}
         {/* After doing i need  to pass the information the */}
       </div>

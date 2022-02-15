@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 
 export default class Img extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+   
+    };
+  }
+
 
   // I'm thinking of making something to check  what is in the the props
     checkConsole = () =>  {
-        console.log(this.props.image);
-        console.log(this.props.name);
+        console.log(this.props.image); 
+        console.log(this.props.name);// This is the name that the person searched in the SearchQuery
         
     }
 
