@@ -76,7 +76,7 @@ export default class App extends Component {
           {`The Location: ${this.state.name}`}
         </h1>
         {/* <h1>{this.state.err}</h1> */}
-        <input style={inputStyle} onChange={this.change}></input>
+        <input style={inputStyle} onChange={this.change} placeholder="States"></input>
         <button style={{ color: "blue" }} onClick={this.handleClick}>
           Explore!
         </button>

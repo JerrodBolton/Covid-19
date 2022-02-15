@@ -19,7 +19,7 @@ export default class Img extends Component {
     render() {
         return (
             <div>
-              <img src = {`https://maps.locationiq.com/v3/staticmap?key=pk.1f933372e4fbe974a7b262d30595f6c4&center=${this.props.locationLat},${this.props.locationLon}&zoom=13`} alt={`${this.props.name}`} fluid
+              <img src = {`https://maps.locationiq.com/v3/staticmap?key=pk.1f933372e4fbe974a7b262d30595f6c4&center=${this.props.locationLat},${this.props.locationLon}&zoom=6`} alt={`${this.props.name}`} fluid
               style={imageStyle}
               />
               {/* I need to call this function */}
