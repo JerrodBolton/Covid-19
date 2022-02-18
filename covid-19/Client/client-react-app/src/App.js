@@ -43,7 +43,7 @@ export default class App extends Component {
         //check and see what is in the image state
         // console.log(this.state.image);
         //check and see what is in the name state
-        // console.log(this.state.name);dot 
+        // console.log(this.state.name);dot
       })
       // parse response to json ///////////////////////////// Not something that I have to do!!!! //////////////////////////
       // use response.data
@@ -61,6 +61,79 @@ export default class App extends Component {
       searchQuery: e.target.value,
     });
   };
+  abbrState = () => {
+
+//   class ClassState {
+//   constructor(abbr,name) {
+  
+//    this.abbr = abbr,
+//    this.name = name,
+  
+//   }
+// }
+    let states = [
+
+    // TODO: I need to add a new class changes 
+
+      ["Arizona", "AZ"],
+      ["Alabama", "AL"],
+      ["Alaska", "AK"],
+      ["Arkansas", "AR"],
+      ["California", "CA"],
+      ["Colorado", "CO"],
+      ["Connecticut", "CT"],
+      ["Delaware", "DE"],
+      ["Florida", "FL"],
+      ["Georgia", "GA"],
+      ["Hawaii", "HI"],
+      ["Idaho", "ID"],
+      ["Illinois", "IL"],
+      ["Indiana", "IN"],
+      ["Iowa", "IA"],
+      ["Kansas", "KS"],
+      ["Kentucky", "KY"],
+      ["Louisiana", "LA"],
+      ["Maine", "ME"],
+      ["Maryland", "MD"],
+      ["Massachusetts", "MA"],
+      ["Michigan", "MI"],
+      ["Minnesota", "MN"],
+      ["Mississippi", "MS"],
+      ["Missouri", "MO"],
+      ["Montana", "MT"],
+      ["Nebraska", "NE"],
+      ["Nevada", "NV"],
+      ["New Hampshire", "NH"],
+      ["New Jersey", "NJ"],
+      ["New Mexico", "NM"],
+      ["New York", "NY"],
+      ["North Carolina", "NC"],
+      ["North Dakota", "ND"],
+      ["Ohio", "OH"],
+      ["Oklahoma", "OK"],
+      ["Oregon", "OR"],
+      ["Pennsylvania", "PA"],
+      ["Rhode Island", "RI"],
+      ["South Carolina", "SC"],
+      ["South Dakota", "SD"],
+      ["Tennessee", "TN"],
+      ["Texas", "TX"],
+      ["Utah", "UT"],
+      ["Vermont", "VT"],
+      ["Virginia", "VA"],
+      ["Washington", "WA"],
+      ["West Virginia", "WV"],
+      ["Wisconsin", "WI"],
+      ["Wyoming", "WY"],
+    ];
+
+    // console.log(input); // this is just to see everything flow really good
+    for (let index = 0; index < states.length; index++) {
+    //   const element = index[0];
+      console.log(index[0]);
+    }
+  };
+
   render() {
     return (
       <div>
@@ -76,7 +149,12 @@ export default class App extends Component {
           {`The Location: ${this.state.name}`}
         </h1>
         {/* <h1>{this.state.err}</h1> */}
-        <input style={inputStyle} onChange={this.change} placeholder="States"></input>
+        {/* <input style={inputStyle onChange={this.change} placeholder="States"></input> */}
+        <select onChange={this.change}>
+          <option value="tn">Tennessee</option>
+          <option value="ms">Mississippi</option>
+          <option value="tx">Texas</option>
+        </select>
         <button style={{ color: "blue" }} onClick={this.handleClick}>
           Explore!
         </button>
@@ -101,11 +179,15 @@ export default class App extends Component {
           locationLat={this.state.locationLat}
           locationLon={this.state.locationLon}
         /> */}
-         <Covid
-         name={this.state.name}
-         locationLat={this.state.locationLat}
+         <button  onClick={this.abbrState}>
+         stateChanger
+        </button>
+        {/* <Covid
+          name={this.state.name}
+          locationLat={this.state.locationLat}
           locationLon={this.state.locationLon}
-         />
+          searchQuery={this.state.searchQuery}
+        /> */}
         {/* I need to make a components to make my image */}
         {/* After doing i need  to pass the information the */}
       </div>

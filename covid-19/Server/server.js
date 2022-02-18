@@ -11,7 +11,7 @@ app.use(cors());
 const PORT = process.env.PORT || 8080;
 
 // app.get('/weather', getWeather)// this is the endpoint that the computer to think about /weather
-app.get("/covid", getCovid); //this is going to get the info that is in the covid-API
+app.get("/covid/:name", getCovid); //this is going to get the info that is in the covid-API
 
 async function getWeather (request, response){
 
@@ -65,10 +65,10 @@ class Forecast {
 
 async function getCovid(request, response) {
 
-  let name = request.query; 
+  let name = request.params.name; 
   console.log(name);
   
-  const Url = `https://api.covidtracking.com/v1/states/ca/current.json`;
+  const Url = `https://api.covidtracking.com/v1/states/${name}/current.json?`;
 //  //this is just a way to get the date in the code.
 //   let currentDate = new Date();
 //   let dateTime =
@@ -77,17 +77,21 @@ async function getCovid(request, response) {
 //     currentDate.getMonth() +
 //     "/" +
 //     currentDate.getDay();
- const CovidInfo = await axios.get(Url, {
- params: {
-    states:name, 
- }
-}).try((res) => {
- console.log(res.date)
- 
+ await axios.get(Url, 
+// {
+//  params: {
+//     states:name, 
+//  }
+// }
+).then((res) => {
+ console.log(res.data)
+ response.status(200).send(res.data);// this is what I am sending back to the frontend 
+
 }).catch((err) => {
  console.log(err)
 })
- response.status(200).send(CovidInfo);
+
+
 }
 // getCovid();
 

@@ -7,11 +7,19 @@ export default class Covid extends Component {
     super(props);
     this.state = {
       hitAPI: false,
-   
+      name:this.props.name,
+      sq:this.props.searchQuery,
+      
     };
   }
 
+  changeName = () => {
+   this.abbrState()
 
+    // I need to set the state for 
+    // console.log(this.state.sq)
+
+  }
 
 
   //this is just a check to see what info I have in the Covid-19 file
@@ -19,23 +27,24 @@ export default class Covid extends Component {
     // console.log(this.props.name);
   };
   //  I want to get the info about about covid-19
-  getInfoAboutCovid_19 = (e) => {
+  getInfoAboutCovid_19 = async (e) => {
     e.preventDefault();
     // So I want to add the endpoint that I want to listen on which is  /covid
-
-    const URL = `http://localhost:8080/covid`; //API URL
-     
-    axios
-      .get(URL, {
-        params: {
-          name: this.props.name 
-        //   latitude: this.props.locationLat,
-        //   longitude: this.props.locationLon,
-        // this is okay everything here is good!!
-        },
-      })
-      .try((res) => {
-        console.log(res.date);
+    const URL = `https://api.covidtracking.com/v1/states/${this.props.searchQuery}/current.json?`; //API URL
+    console.log(URL)
+   await axios
+      .get(URL
+    // {
+    //     params: {
+    //       name: this.props.name 
+    //     //   latitude: this.props.locationLat,
+    //     //   longitude: this.props.locationLon,
+    //     // this is okay everything here is good!!
+    //     },
+    //   }
+    )
+      .then((res) => {
+        console.log(res.data);
         // this is just some debug that I want to see if everything is moving correctly
         this.setState({
         hitAPI:true
@@ -50,27 +59,14 @@ export default class Covid extends Component {
         alert(err);
       }); 
 
-// let  options = {
-//   method: 'GET',
-//   url: 'https://covid-19-data.p.rapidapi.com/country/code',
-//   params: {code:"us"},
-//   headers: {
-//     'x-rapidapi-host': 'covid-19-data.p.rapidapi.com',
-//     'x-rapidapi-key': '06b1bd4a25msh8a5db757aecb34ap15b179jsn7cb5432a2942'
-//   }
-// };
 
-// axios.request(options).then(function (response) {
-// 	console.log(response.data);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
 };
 
   render() {
     return <div>
 
     <button onClick={this.getInfoAboutCovid_19}> Covid</button>
+    
     
     
     
