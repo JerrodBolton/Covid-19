@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import Image from "./components/Img";
 // import Weather from "./components/Weather";
-// import Covid from "./components/Covid";
+import Covid from "./components/Covid";
 // import DropdownButton from 'react-bootstrap/DropdownButton'
 // import DropdownItem from "react-bootstrap/esm/DropdownItem";
-
 
 
 
@@ -19,8 +18,6 @@ export default class App extends Component {
     this.state = {
       hitAPI: false,
       searchQuery: " ",
-      abbr:[],
-      spellOut: [], 
     };
   }
 
@@ -42,7 +39,7 @@ export default class App extends Component {
       // call API ------ retune a response
       // get a response//res is my okay
       .then((res) => {
-        console.log(res.data[0]);
+        // console.log(res.data[0]);
         // I made hitAPI true in the state if and only if I got a response
         this.setState({
           hitAPI: true,
@@ -50,7 +47,9 @@ export default class App extends Component {
           image: res.data[0].icon,
           locationLat: res.data[0].lat,
           locationLon: res.data[0].lon,
+          abbr: this.abbrState(this.state.searchQuery), 
         });
+        // console.log(this.state.abbr); // DeBug on if abbr is being set. 
         //check and see what is in the image state
         // console.log(this.state.image);
         // check and see what is in the name state
@@ -61,13 +60,14 @@ export default class App extends Component {
       // err handling // is the my bad one
       .catch((err) => {
         console.log(err);
-        alert(err);
+        // alert(err);
       });
   };
 
- abbrState = (input, to) => {
-   input.toLowerCase;
-    
+ abbrState = (input) => {
+
+//    console.log( "I am run Jerrod");
+//    console.log(input); 
     
    let states = [
       ["Arizona", "az"],
@@ -121,23 +121,41 @@ export default class App extends Component {
       ["Wisconsin", "wi"],
       ["Wyoming", "wy"],
     ];
+ 
 
-    if (to == 'abbr'){
-        input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-        
-        for(let i = 0; i < states.length; i++){
-            if(states[i][0].toLowerCase === input){
-                return(states[i][1]);
-            }
-        }    
-    } else if (to == 'name'){
-        input = input.toUpperCase();
-        for(let i = 0; i < states.length; i++){
-            if(states[i][1] == input){
-                return(states[i][0]);
-            }
-        }    
-    }
+     for (let i = 0; i < states.length; i++) {
+
+         if(input === states[i][0]){
+            // console.log(input.toUpperCase)
+           return(states[i][1]);
+         }
+        //  else{
+        //   console.log("Something isn't right"); 
+         
+        //  }
+         
+     }
+
+
+
+
+
+    // if (to == 'abbr'){
+    //     input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    //     for(let i = 0; i < states.length; i++){
+    //         if(states[i][0].toLowerCase == input){
+    //             return(states[i][1]);
+    //         }
+    //     }    
+    // } 
+    // else if (to == 'name'){
+    //     input = input.toUpperCase();
+    //     for(let i = 0; i < states.length; i++){
+    //         if(states[i][1] == input){
+    //             return(states[i][0]);
+    //         }
+    //     }    
+    // }
 }
 
   change = (e) => {
@@ -146,10 +164,11 @@ export default class App extends Component {
     // it got to call a setState
     this.setState({
       searchQuery: e.target.value
+      
     });
     
 
-    this.abbrState(this.state.searchQuery)
+    // this.abbrState(this.state.searchQuery)
     // console.log("I am run Jerrod");//Debug on the if this function  is running
 
 
@@ -218,12 +237,11 @@ export default class App extends Component {
           locationLon={this.state.locationLon}
         /> */}
         {/* <button onClick={this.abbrState}>abbrState</button> */}
-        {/* <Covid
+        <Covid
           name={this.state.name}
-          locationLat={this.state.locationLat}
-          locationLon={this.state.locationLon}
           searchQuery={this.state.searchQuery}
-        /> */}
+         abbr = {this.state.abbr}
+        />
       </div>
     );
   }

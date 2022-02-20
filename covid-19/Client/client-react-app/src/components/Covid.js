@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+
 export default class Covid extends Component {
 // I want to make some state c
   constructor(props) {
@@ -30,7 +31,7 @@ export default class Covid extends Component {
   getInfoAboutCovid_19 = async (e) => {
     e.preventDefault();
     // So I want to add the endpoint that I want to listen on which is  /covid
-    const URL = `https://api.covidtracking.com/v1/states/${this.props.searchQuery}/current.json?`; //API URL
+    const URL = `https://api.covidtracking.com/v1/states/${this.props.abbr}/current.json?`; //API URL
     console.log(URL)
    await axios
       .get(URL
@@ -44,11 +45,18 @@ export default class Covid extends Component {
     //   }
     )
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.death);
+        console.log(res.data.positive);
+
+
         // this is just some debug that I want to see if everything is moving correctly
         this.setState({
-        hitAPI:true
-        
+        hitAPI:true,
+        positive:res.data.positive, 
+        death:res.data.death,
+        date:res.data.lastUpdateEt,
+        positiveI:res.data.positiveIncrease
+
         })
       })
       .catch((err) => {
@@ -65,7 +73,7 @@ export default class Covid extends Component {
   render() {
     return <div>
 
-    <button onClick={this.getInfoAboutCovid_19}> Covid</button>
+    <button style={{ color: "blue", margin: "13px" }}onClick={this.getInfoAboutCovid_19}> Covid</button>
     
     
     
