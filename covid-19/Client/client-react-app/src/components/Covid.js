@@ -14,15 +14,6 @@ export default class Covid extends Component {
     };
   }
 
-  changeName = () => {
-   this.abbrState()
-
-    // I need to set the state for 
-    // console.log(this.state.sq)
-
-  }
-
-
   //this is just a check to see what info I have in the Covid-19 file
   checkInfo = () => {
     // console.log(this.props.name);
@@ -73,8 +64,16 @@ export default class Covid extends Component {
   render() {
     return <div>
 
-    <button style={{ color: "blue", margin: "13px" }}onClick={this.getInfoAboutCovid_19}> Covid</button>
-    
+   
+     <div>
+    <h1> Covid Information </h1>  <button style={{ color: "blue", margin: "13px" }}onClick={this.getInfoAboutCovid_19}> Covid</button>
+    <h2>  1. Positive in {this.state.name}: {this.state.positive}</h2>
+    <h2>  2. Positive number that has increased: {this.state.positiveI}</h2>
+    <h2>  3. The total number of deaths in {this.state.name}: {this.state.death}</h2>
+    <h2>  4. Date & Time: {this.state.date}</h2>
+     
+     
+     </div>
     
     
     
