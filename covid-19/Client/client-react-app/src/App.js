@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import axios from "axios";
 import Image from "./components/Img";
 // import Weather from "./components/Weather";
-import Covid from "./components/Covid";
+// import Covid from "./components/Covid";
+// import DropdownButton from 'react-bootstrap/DropdownButton'
+// import DropdownItem from "react-bootstrap/esm/DropdownItem";
+
+
+
+
+
+
+
 
 export default class App extends Component {
   constructor(props) {
@@ -10,6 +19,8 @@ export default class App extends Component {
     this.state = {
       hitAPI: false,
       searchQuery: " ",
+      abbr:[],
+      spellOut: [], 
     };
   }
 
@@ -42,7 +53,7 @@ export default class App extends Component {
         });
         //check and see what is in the image state
         // console.log(this.state.image);
-        //check and see what is in the name state
+        // check and see what is in the name state
         // console.log(this.state.name);dot
       })
       // parse response to json ///////////////////////////// Not something that I have to do!!!! //////////////////////////
@@ -53,85 +64,111 @@ export default class App extends Component {
         alert(err);
       });
   };
+
+ abbrState = (input, to) => {
+   input.toLowerCase;
+    
+    
+   let states = [
+      ["Arizona", "az"],
+      ["Alabama", "al"],
+      ["Alaska", "ak"],
+      ["Arkansas", "ar"],
+      ["California", "ca"],
+      ["Colorado", "co"],
+      ["Connecticut", "ct"],
+      ["Delaware", "de"],
+      ["Florida", "fl"],
+      ["Georgia", "ga"],
+      ["Hawaii", "hi"],
+      ["Idaho", "id"],
+      ["Illinois", "il"],
+      ["Indiana", "in"],
+      ["Iowa", "ia"],
+      ["Kansas", "ks"],
+      ["Kentucky", "ky"],
+      ["Louisiana", "la"],
+      ["Maine", "me"],
+      ["Maryland", "md"],
+      ["Massachusetts", "ma"],
+      ["Michigan", "mi"],
+      ["Minnesota", "mn"],
+      ["Mississippi", "ms"],
+      ["Missouri", "mo"],
+      ["Montana", "mt"],
+      ["Nebraska", "ne"],
+      ["Nevada", "nv"],
+      ["New Hampshire", "nh"],
+      ["New Jersey", "nj"],
+      ["New Mexico", "nm"],
+      ["New York", "ny"],
+      ["North Carolina", "nc"],
+      ["North Dakota", "nd"],
+      ["Ohio", "oh"],
+      ["Oklahoma", "ok"],
+      ["Oregon", "or"],
+      ["Pennsylvania", "pa"],
+      ["Rhode Island", "ri"],
+      ["South Carolina", "sc"],
+      ["South Dakota", "sd"],
+      ["Tennessee", "tn"],
+      ["Texas", "tx"],
+      ["Utah", "ut"],
+      ["Vermont", "vt"],
+      ["Virginia", "va"],
+      ["Washington", "wa"],
+      ["West Virginia", "wv"],
+      ["Wisconsin", "wi"],
+      ["Wyoming", "wy"],
+    ];
+
+    if (to == 'abbr'){
+        input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        
+        for(let i = 0; i < states.length; i++){
+            if(states[i][0].toLowerCase === input){
+                return(states[i][1]);
+            }
+        }    
+    } else if (to == 'name'){
+        input = input.toUpperCase();
+        for(let i = 0; i < states.length; i++){
+            if(states[i][1] == input){
+                return(states[i][0]);
+            }
+        }    
+    }
+}
+
   change = (e) => {
     e.preventDefault(); // This is a function that prevents the default behavior
     // change is going to change the value of the searchQ
     // it got to call a setState
     this.setState({
-      searchQuery: e.target.value,
+      searchQuery: e.target.value
     });
-  };
-  abbrState = () => {
+    
 
-//   class ClassState {
-//   constructor(abbr,name) {
-  
-//    this.abbr = abbr,
-//    this.name = name,
-  
-//   }
-// }
-    let states = [
+    this.abbrState(this.state.searchQuery)
+    // console.log("I am run Jerrod");//Debug on the if this function  is running
 
-    // TODO: I need to add a new class changes 
-
-      ["Arizona", "AZ"],
-      ["Alabama", "AL"],
-      ["Alaska", "AK"],
-      ["Arkansas", "AR"],
-      ["California", "CA"],
-      ["Colorado", "CO"],
-      ["Connecticut", "CT"],
-      ["Delaware", "DE"],
-      ["Florida", "FL"],
-      ["Georgia", "GA"],
-      ["Hawaii", "HI"],
-      ["Idaho", "ID"],
-      ["Illinois", "IL"],
-      ["Indiana", "IN"],
-      ["Iowa", "IA"],
-      ["Kansas", "KS"],
-      ["Kentucky", "KY"],
-      ["Louisiana", "LA"],
-      ["Maine", "ME"],
-      ["Maryland", "MD"],
-      ["Massachusetts", "MA"],
-      ["Michigan", "MI"],
-      ["Minnesota", "MN"],
-      ["Mississippi", "MS"],
-      ["Missouri", "MO"],
-      ["Montana", "MT"],
-      ["Nebraska", "NE"],
-      ["Nevada", "NV"],
-      ["New Hampshire", "NH"],
-      ["New Jersey", "NJ"],
-      ["New Mexico", "NM"],
-      ["New York", "NY"],
-      ["North Carolina", "NC"],
-      ["North Dakota", "ND"],
-      ["Ohio", "OH"],
-      ["Oklahoma", "OK"],
-      ["Oregon", "OR"],
-      ["Pennsylvania", "PA"],
-      ["Rhode Island", "RI"],
-      ["South Carolina", "SC"],
-      ["South Dakota", "SD"],
-      ["Tennessee", "TN"],
-      ["Texas", "TX"],
-      ["Utah", "UT"],
-      ["Vermont", "VT"],
-      ["Virginia", "VA"],
-      ["Washington", "WA"],
-      ["West Virginia", "WV"],
-      ["Wisconsin", "WI"],
-      ["Wyoming", "WY"],
-    ];
 
     // console.log(input); // this is just to see everything flow really good
-    for (let index = 0; index < states.length; index++) {
-    //   const element = index[0];
-      console.log(index[0]);
-    }
+    // for (let index = 0; index < states.length; index++) {
+    //     const element1 = states[index][0];
+    //     const element2 = states[index][1];
+    //     // console.log(element) 
+    //     this.state.spellOut.push(element1);
+    //     this.state.abbr.push(element2);
+    // }
+    // for (let index = 0; index < this.state.spellOut.length; index++) {
+    //      if(this.state.searchQuery === index){
+    //        this.setState({ 
+    //         searchQuery: "Done", 
+    //        })
+    //      }
+    // }
+    
   };
 
   render() {
@@ -145,19 +182,20 @@ export default class App extends Component {
             fontSize: "30px",
           }}
         >
-          {" "}
           {`The Location: ${this.state.name}`}
         </h1>
-        {/* <h1>{this.state.err}</h1> */}
-        {/* <input style={inputStyle onChange={this.change} placeholder="States"></input> */}
-        <select onChange={this.change}>
-          <option value="tn">Tennessee</option>
-          <option value="ms">Mississippi</option>
-          <option value="tx">Texas</option>
-        </select>
+
+        <input style={inputStyle} onChange={this.change} placeholder="Prefix States"></input>
+        {/* <select onClick={this.change} onClick={this.abbrState}>
+            <option value="ms"> Mississippi</option>
+            <option value="tx"> Texas </option>
+            <option value={this.state.abbr}>{this.state.spellOut}</option>
+        </select> */}
         <button style={{ color: "blue" }} onClick={this.handleClick}>
           Explore!
         </button>
+        
+
         {/* <h2
           style={{
             padding: "10px 20px",
@@ -179,17 +217,13 @@ export default class App extends Component {
           locationLat={this.state.locationLat}
           locationLon={this.state.locationLon}
         /> */}
-         <button  onClick={this.abbrState}>
-         stateChanger
-        </button>
+        {/* <button onClick={this.abbrState}>abbrState</button> */}
         {/* <Covid
           name={this.state.name}
           locationLat={this.state.locationLat}
           locationLon={this.state.locationLon}
           searchQuery={this.state.searchQuery}
         /> */}
-        {/* I need to make a components to make my image */}
-        {/* After doing i need  to pass the information the */}
       </div>
     );
   }
