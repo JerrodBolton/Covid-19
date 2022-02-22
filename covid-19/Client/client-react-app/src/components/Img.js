@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Img extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-   
-    };
-  }
+
 
 
   // I'm thinking of making something to check  what is in the the props
@@ -31,9 +26,11 @@ export default class Img extends Component {
 }
 
 const imageStyle = {
-    textAlign: "left",
-    padding: "10px 20px",
-    border: "solid dotted blue",
-    borderRadius: "30px",
-    marginBottom:"px", 
+    textAlign: "center",
+    padding: "3px",
+    width:"80%",
+    // transitionDelay: "0s",
+    border: "9px rgb(200, 132, 37)",
+    borderStyle: "groove",
+    borderRadius:" 6px",
 }

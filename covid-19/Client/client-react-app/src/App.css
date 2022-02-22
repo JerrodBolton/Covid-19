@@ -1,38 +1,73 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 50%;
+  max-width: 1400px;
+  margin: 0rem;
+  background: rgb(249, 213, 158);
+  color: rgb(200, 132, 37);
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+}
+
+.wholeMappingPage{
+border: 9px rgb(200, 132, 37);
+border-style: groove;
+border-radius: 6px;
+position: relative;
+text-align: center;
+width: 100%;
+margin-left: 50%;
+top: 25px;
+}
+.wholeMappingPage > div{
+/* border: solid 5px rgb(0, 81, 128); */
+}
+.title{
+/* border: solid salmon; */
+position: relative;
+top: 0.8rem;
+bottom: 0.8rem;
+font-size: 30px;
+
+
+}
+.ExplorerSearchBar{
+/* border: 5px solid yellow; */
+position: relative;
+padding: 1rem;
+}
+
+.ExplorerSearchBar > a {
+padding: 8px;
+zoom: 1.25;
+ 
+}
+.covidInfo{
+/* border: solid green; */
+position: relative;
+}
+.covidInfoTitle{
+  display: grid;
+  column-gap: -5px;
+  grid-template-columns: 75% 25%;
+  background: rgb(249, 213, 158);
+  padding: 10px;
+
+}
+.covidInfoTitle > a {
+  background: rgb(249, 213, 158);
+  padding: 5px;
+  font-size: 30px;
   text-align: center;
 }
+h3{
+padding: 0.5rem;
+font-size: xx-large;
+/* margin-bottom: 2px; */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
